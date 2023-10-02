@@ -1,3 +1,5 @@
+import 'package:custom_clock/clock1.dart';
+import 'package:custom_clock/clock2.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -9,10 +11,20 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: Scaffold(
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(brightness: Brightness.dark),
+      home: const Scaffold(
+        backgroundColor: Colors.black,
         body: Center(
-          child: Text('Hello World!'),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Clock1(),
+              SizedBox(height: 40),
+              Clock2(),
+            ],
+          ),
         ),
       ),
     );
