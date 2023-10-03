@@ -18,13 +18,13 @@ class MainApp extends StatelessWidget {
       home: const Scaffold(
         backgroundColor: Colors.black,
         body: Center(
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+          child: Wrap(
+            direction: Axis.horizontal,
+            runSpacing: 40,
+            spacing: 40,
             children: [
               Clock1(),
-              SizedBox(width: 40),
               Clock2(),
-              SizedBox(width: 40),
               Clock3(),
             ],
           ),
