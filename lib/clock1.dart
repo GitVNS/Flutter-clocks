@@ -18,11 +18,13 @@ class _Clock1State extends State<Clock1> {
   @override
   Widget build(BuildContext context) {
     Timer(const Duration(seconds: 1), () {
-      DateTime dateTime = DateTime.now();
-      second = dateTime.second * 6;
-      minute = dateTime.minute * 6;
-      hour = dateTime.hour * 30;
-      setState(() {});
+      if (mounted) {
+        DateTime dateTime = DateTime.now();
+        second = dateTime.second * 6;
+        minute = dateTime.minute * 6;
+        hour = dateTime.hour * 30;
+        setState(() {});
+      }
     });
 
     return Stack(
@@ -58,7 +60,7 @@ class Clock1Painter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     Paint secondsPaint = Paint()
-      ..color = Colors.lime
+      ..color = const Color(0xff8338ec)
       ..style = PaintingStyle.stroke
       ..strokeCap = StrokeCap.round
       ..strokeWidth = size.width * 0.03;

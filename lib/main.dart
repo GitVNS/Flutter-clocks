@@ -1,5 +1,6 @@
 import 'package:custom_clock/clock1.dart';
 import 'package:custom_clock/clock2.dart';
+import 'package:custom_clock/clock3.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -17,12 +18,14 @@ class MainApp extends StatelessWidget {
       home: const Scaffold(
         backgroundColor: Colors.black,
         body: Center(
-          child: Column(
+          child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Clock1(),
-              SizedBox(height: 40),
+              SizedBox(width: 40),
               Clock2(),
+              SizedBox(width: 40),
+              Clock3(),
             ],
           ),
         ),
