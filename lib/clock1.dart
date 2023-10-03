@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
@@ -9,41 +10,21 @@ class Clock1 extends StatefulWidget {
   State<Clock1> createState() => _Clock1State();
 }
 
-class _Clock1State extends State<Clock1> with TickerProviderStateMixin {
-  late AnimationController _animationController;
-  late AnimationController _animationController1;
-  late AnimationController _animationController2;
-  late Animation<int> seconds;
-  late Animation<int> minutes;
-  late Animation<int> hours;
-
-  @override
-  void initState() {
-    _animationController =
-        AnimationController(vsync: this, duration: const Duration(seconds: 60))
-          ..repeat();
-    _animationController1 = AnimationController(
-        vsync: this, duration: const Duration(seconds: 3600))
-      ..repeat();
-    _animationController2 = AnimationController(
-        vsync: this, duration: const Duration(seconds: 108000))
-      ..repeat();
-    seconds = IntTween(begin: 0, end: 360).animate(_animationController);
-    minutes = IntTween(begin: 0, end: 360).animate(_animationController1);
-    hours = IntTween(begin: 0, end: 360).animate(_animationController2);
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    _animationController.dispose();
-    _animationController1.dispose();
-    _animationController2.dispose();
-    super.dispose();
-  }
+class _Clock1State extends State<Clock1> {
+  var second = DateTime.now().second;
+  var minute = DateTime.now().minute;
+  var hour = DateTime.now().hour;
 
   @override
   Widget build(BuildContext context) {
+    Timer(const Duration(seconds: 1), () {
+      DateTime dateTime = DateTime.now();
+      second = dateTime.second * 6;
+      minute = dateTime.minute * 6;
+      hour = dateTime.hour * 30;
+      setState(() {});
+    });
+
     return Stack(
       children: [
         Container(
@@ -54,20 +35,13 @@ class _Clock1State extends State<Clock1> with TickerProviderStateMixin {
             color: Colors.white10,
           ),
         ),
-        AnimatedBuilder(
-          animation: _animationController,
-          builder: (context, _) {
-            return SizedBox(
-              width: 200,
-              height: 200,
-              child: CustomPaint(
-                painter: Clock1Painter(
-                    seconds: seconds.value,
-                    minutes: minutes.value,
-                    hours: hours.value),
-              ),
-            );
-          },
+        SizedBox(
+          width: 200,
+          height: 200,
+          child: CustomPaint(
+            painter:
+                Clock1Painter(seconds: second, minutes: minute, hours: hour),
+          ),
         ),
       ],
     );
