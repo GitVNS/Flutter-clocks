@@ -1,3 +1,6 @@
-# custom_clock
+# Flutter Clocks
 
-A new Flutter project.
+Minimal design custom clocks made with Custom Painter in Flutter.
+
+# Sample
+![](https://github.com/GitVNS/Flutter-clocks/blob/main/sample/sample.gif)
